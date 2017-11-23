@@ -1,0 +1,16 @@
+version: '2.1'
+services:
+  excel-microservice:
+    image: sysunite/excel-microservice:0.0.7
+    expose:
+      - "9267"
+
+  weaver-export-node-servive:
+    image: sysunite/weaver-export-node-service:0.0.1
+    expose:
+      - "2525"
+    ports:
+      - "2525:2525"
+    links:
+      - excel-microservice
+    

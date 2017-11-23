@@ -1,0 +1,1 @@
+npm run prepublish ;docker rm weaver-export-cont; docker build -t weaver-export .;docker run --name weaver-export-cont -it -p 2525:2525 weaver-export

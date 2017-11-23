@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
   description: This is the weaver-export-service which handles weaver data exports in different formats.
-  version: 0.1.0
+  version: 0.0.1
   title: Weaver Exporter Service
   contact:
     email: carlos@sysunite.com

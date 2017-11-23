@@ -13,7 +13,6 @@ class ExcelGen
     @headers = ['Node name','Node ID','Attribute key','Attribute value','Relation key','Target ID','Target Name']
     @excelMicroserviceEndpoint = config.get('services.excelMicroservice')
     @fileName = 'dump.xlsx'
-    @dir = config.get('dataDir')
 
   createHeaders: ->
     i = 0
