@@ -1,0 +1,8 @@
+.DS_Store
+node_modules
+lib
+output
+npm-debug.log
+config/*.coffee
+data/*.json
+allDocs.json

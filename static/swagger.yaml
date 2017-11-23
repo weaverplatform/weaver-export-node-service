@@ -1,0 +1,107 @@
+swagger: '2.0'
+info:
+  description: This is the weaver-export-service which handles weaver data exports in different formats.
+  version: 0.1.0
+  title: Weaver Exporter Service
+  contact:
+    email: carlos@sysunite.com
+  license:
+    name: AGPL-3.0
+    url: 'https://opensource.org/licenses/AGPL-3.0'
+basePath: /
+tags:
+  - name: xcl
+    description: excel export endpoint
+    externalDocs:
+      description: This endpoint depends on excel-microservice
+      url: 'https://github.com/sysunite/excel-microservice'
+  - name: applicationInfo
+    description: service which handles weaver data exports in different formats.
+schemes:
+  - http
+paths:
+  /:
+    get:
+      tags:
+        - applicationInfo
+      summary: Get application and version info
+      description: ''
+      operationId: getApplicationInfo
+      produces:
+        - application/text
+      responses:
+        '200':
+          description: succes
+          schema:
+            type: string
+  /swagger:
+    get:
+      tags:
+        - applicationInfo
+      summary: Swagger definition of the service
+      description: >-
+        Returns the swagger file for the service, which specifies all its
+        capabilities
+      operationId: getSwagger
+      produces:
+        - application/yaml
+      responses:
+        '200':
+          description: succes
+
+  /exceldump:
+    get:
+      tags:
+        - xcl
+      summary: Retrieve excel data dump
+      description: 'Restrieves a excel xlsx file with the dump of weaverDB'
+      operationId: getExcelDump
+      produces:
+        - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+      parameters:
+        - name: project
+          in: query
+          description: The weaver project id to dump
+          required: true
+          type: string
+        - name: authToken
+          in: query
+          description: The user's authtoken to store the link as
+          required: true
+          type: string
+        - name: nameAttribute
+          in: query
+          description: The attribute name for human porpouses
+          required: false
+          type: string
+      responses:
+        '200':
+          description: succes
+          schema:
+            type: string
+            format: binary
+        '404':
+          description: Project not found
+          
+definitions:
+  Version:
+    type: object
+    properties:
+      versionNumber:
+        type: string
+      documentId:
+        type: string
+  DocumentContainer:
+    type: object
+    properties:
+      title:
+        type: string
+      containerId:
+        type: string
+      containerNumber:
+        type: string
+      versions:
+        type: array
+        items:
+          $ref: '#/definitions/Version'
+

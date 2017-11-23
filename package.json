@@ -1,0 +1,54 @@
+{
+  "name": "weaver-export-node-service",
+  "version": "0.0.1",
+  "author": {
+    "name": "Carlos Villanueva",
+    "url": "https://github.com/carvilsi",
+    "email": "carlos@sysunite.com"
+  },
+  "readme": "README.md",
+  "main": "lib/index.js",
+  "license": "GPL-3.0",
+  "repository": {},
+  "dependencies": {
+    "bluebird": "^3.3.5",
+    "coffee": "^3.2.4",
+    "config": "^1.26.2",
+    "express": "^4.13.0",
+    "request": "^2.74.0",
+    "request-promise": "^4.1.1",
+    "weaver-sdk": "^3.0.14-beta.1"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-as-promised": "^6.0.0",
+    "coffee-script": "^1.9.3",
+    "mocha": "^3.2.0",
+    "npm-watch": "^0.1.8"
+  },
+  "engines": {
+    "node": ">=0.8"
+  },
+  "scripts": {
+    "start": "./node_modules/.bin/coffee src/index.coffee",
+    "prepublish": "./node_modules/.bin/coffee -o lib -c src",
+    "watch-test": "npm-watch test",
+    "watch-start": "npm-watch start",
+    "test": "mocha test/"
+  },
+  "watch": {
+    "start": {
+      "patterns": [
+        "src"
+      ],
+      "extensions": "coffee"
+    },
+    "test": {
+      "patterns": [
+        "src",
+        "test"
+      ],
+      "extensions": "coffee"
+    }
+  }
+}
