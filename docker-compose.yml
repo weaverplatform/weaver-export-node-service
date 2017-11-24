@@ -1,7 +1,7 @@
 version: '2.1'
 services:
   excel-microservice:
-    image: sysunite/excel-microservice:0.0.7
+    image: sysunite/excel:0.1.1
     expose:
       - "9267"
 
