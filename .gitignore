@@ -5,3 +5,4 @@ output
 npm-debug.log
 data/*.json
 allDocs.json
+*.log

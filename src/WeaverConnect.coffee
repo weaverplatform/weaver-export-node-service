@@ -1,7 +1,6 @@
 Weaver  = require('weaver-sdk')
 Promise = require('bluebird')
 config  = require('config')
-log = config.get('wes.log')
 
 class WeaverConnect
   
@@ -21,8 +20,5 @@ class WeaverConnect
     ).then((results) =>
       results
     )
-    
-    
-    
   
 module.exports = WeaverConnect
