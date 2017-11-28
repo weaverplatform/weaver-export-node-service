@@ -35,11 +35,11 @@ app.get('/+exceldump', (req, res) ->
 
   project = req.query.project
   
-  if !req.query.authToken?
-    res.status(400).send("Query parameter 'authToken' is required")
+  if !req.query.user?
+    res.status(400).send("Query parameter user with 'authToken' is required")
     return
 
-  authToken = req.query.authToken
+  authToken = req.query.user
   
   nameAttribute = if req.query.nameAttribute? then req.query.nameAttribute else null
   

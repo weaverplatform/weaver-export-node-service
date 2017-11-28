@@ -57,14 +57,14 @@ paths:
       description: 'Restrieves a excel xlsx file with the dump of weaverDB'
       operationId: getExcelDump
       produces:
-        - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+        - application/octet-stream
       parameters:
         - name: project
           in: query
           description: The weaver project id to dump
           required: true
           type: string
-        - name: authToken
+        - name: user
           in: query
           description: The user's authtoken to store the link as
           required: true
