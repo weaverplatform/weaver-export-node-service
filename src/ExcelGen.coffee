@@ -3,8 +3,7 @@ Promise = require('bluebird')
 config  = require('config')
 request = require('request')
 fs      = require('fs')
-
-log = config.get('wes.log')
+logger  = require('./util/logger')
 
 class ExcelGen
   
@@ -25,10 +24,10 @@ class ExcelGen
     try
       request.post({url:"#{@excelMicroserviceEndpoint}/excel/create?fileName=#{@fileName}",headers:{"content-type": "application/json"}, json: sheet}, (err, httpResponse, body) ->
         if err
-          console.log err
+          logger.error err
       ).pipe(response)
     catch error
-      console.log error
+      logger.error error
     
   processWeaverNodesForJSONExcel: (weaverNodes, nameAttribute = 'name') ->
     index = 1
@@ -72,7 +71,7 @@ class ExcelGen
     .then( =>
       @processWeaverNodesForJSONExcel(weaverNodes,nameAttribute)
     ).then( =>
-      console.log JSON.stringify(@sheet) if log
+      logger.debug JSON.stringify(@sheet)
       @createExcelReport(@sheet, response)
     )
   

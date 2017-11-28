@@ -1,7 +1,9 @@
 module.exports =
   wes:
-    log: false
     port: 2525
+    logging:
+      console: 'info'
+      file:    'error'
     
   services:
     excelMicroservice: 'http://localhost:9267'

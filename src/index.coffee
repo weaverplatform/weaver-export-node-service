@@ -7,10 +7,9 @@ config            = require('config')
 Weaver            = require('weaver-sdk')
 WeaverConnect     = require('./WeaverConnect')
 ExcelGen          = require('./ExcelGen')
-cJSON             = require('circular-json')
+logger            = require('./util/logger')
 
 
-log = config.get('wes.log')
 
 info = JSON.parse(fs.readFileSync('./package.json', 'utf8'))
 
@@ -19,7 +18,7 @@ weaver = new Weaver()
 try
   weaver.connect(config.get('weaver'))
 catch error
-  console.log error
+  logger.error error
   
 
 # Index page
@@ -51,7 +50,7 @@ app.get('/+exceldump', (req, res) ->
   .then((results) =>
     excelGen.getExcel(results,nameAttribute, res)
   ).catch((err) ->
-    console.error err
+    logger.error err
     res.status(400).send("Something went wrong during weaver querying")
   )
 )
@@ -62,8 +61,8 @@ app.get('/+swagger', (req, res) ->
 
 # Run
 port = process.env.PORT or config.get('wes.port')
-http.listen(port, ->
-  console.log "#{info.name} #{info.version} running on port #{port}"
-  console.log "Connecting to weaver endpoint: #{config.get('weaver')}"
+http.listen(port, =>
+  logger.info "#{info.name} #{info.version} running on port #{port}"
+  logger.info "Connecting to weaver endpoint: #{config.get('weaver')}"
+  return
 )
-
