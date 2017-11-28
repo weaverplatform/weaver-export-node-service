@@ -50,7 +50,7 @@ app.get('/+exceldump', (req, res) ->
   .then((results) =>
     excelGen.getExcel(results,nameAttribute, res)
   ).catch((err) ->
-    console.error err
+    logger.error err
     res.status(400).send("Something went wrong during weaver querying")
   )
 )
@@ -61,7 +61,8 @@ app.get('/+swagger', (req, res) ->
 
 # Run
 port = process.env.PORT or config.get('wes.port')
-http.listen(port, ->
+http.listen(port, =>
   logger.info "#{info.name} #{info.version} running on port #{port}"
   logger.info "Connecting to weaver endpoint: #{config.get('weaver')}"
+  return
 )

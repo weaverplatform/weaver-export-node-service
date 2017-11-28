@@ -1,3 +1,4 @@
+require('colors')
 winston = require('winston')      # Logging library
 require('winston-daily-rotate-file');
 moment  = require('moment')       # Easy date formatting library
